@@ -15,9 +15,7 @@
 <!-- TODO: reemplazar por el GIF real una vez grabado con ScreenToGif/Kap.
      Recomendado: 5-10s mostrando subir el CV + pegar la oferta + click en "Analizar"
      hasta que aparecen las métricas (score, tiempo, gaps). -->
-![Análisis completo en segundos](assets/demo-analisis.gif)
-
-> 💡 *Reemplazá este bloque por tu GIF: grabá la pantalla, guardalo en `assets/demo-analisis.gif` y el markdown de arriba ya lo va a mostrar automáticamente.*
+![Análisis completo en segundos](assets/dashboard.gif)
 
 ---
 
@@ -104,12 +102,12 @@ Cada agente generativo tiene reglas explícitas en su system prompt para **nunca
 
 <table>
   <tr>
-    <td><img src="assets/screenshot-metricas.png" alt="Métricas del análisis" width="400"/></td>
-    <td><img src="assets/screenshot-cv-adaptado.png" alt="CV Adaptado" width="400"/></td>
+    <td><img src="assets/Screenshot_1.png" alt="Métricas del análisis" width="400"/></td>
+    <td><img src="assets/Screenshot_2.png" alt="CV Adaptado" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="assets/screenshot-cover-letter.png" alt="Cover Letter" width="400"/></td>
-    <td><img src="assets/screenshot-kit-entrevista.png" alt="Kit de Entrevista" width="400"/></td>
+    <td><img src="assets/Screenshot_3.png" alt="Cover Letter" width="400"/></td>
+    <td><img src="assets/Screenshot_4.png" alt="Kit de Entrevista" width="400"/></td>
   </tr>
 </table>
 
