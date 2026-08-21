@@ -1,0 +1,14 @@
+# Entorno y secrets
+.env
+venv/
+.venv/
+
+# Cache local del proyecto
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/secrets.toml
