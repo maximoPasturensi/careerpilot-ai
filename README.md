@@ -10,6 +10,17 @@
 
 ---
 
+## 🎥 Demo en acción
+
+<!-- TODO: reemplazar por el GIF real una vez grabado con ScreenToGif/Kap.
+     Recomendado: 5-10s mostrando subir el CV + pegar la oferta + click en "Analizar"
+     hasta que aparecen las métricas (score, tiempo, gaps). -->
+![Análisis completo en segundos](assets/demo-analisis.gif)
+
+> 💡 *Reemplazá este bloque por tu GIF: grabá la pantalla, guardalo en `assets/demo-analisis.gif` y el markdown de arriba ya lo va a mostrar automáticamente.*
+
+---
+
 ## 📌 El problema
 
 Adaptar un CV, redactar una carta de presentación personalizada y prepararse para una entrevista, para **cada** oferta laboral a la que uno postula, toma en promedio **~45 minutos**. Esto limita el volumen y la calidad de las postulaciones de cualquier persona en búsqueda activa de empleo.
@@ -77,6 +88,30 @@ Todo con un principio no negociable: **el sistema nunca inventa experiencia que 
 ### Guardrails éticos (por diseño, no accidental)
 
 Cada agente generativo tiene reglas explícitas en su system prompt para **nunca inventar experiencia, tecnologías o anécdotas que el candidato no tiene**. Si la oferta pide una skill que falta en el CV, el sistema lo reconoce honestamente (y muestra cómo el candidato podría cerrar esa brecha) en vez de fabricar una mentira convincente.
+
+<!-- TODO: GIF corto (5-8s) mostrando el scroll por la tab "CV Adaptado" con el
+     antes/después de un bullet, o la tab "Kit de Entrevista" con un expander
+     abriéndose en la pregunta sobre un gap real (ej. Airflow). -->
+
+---
+
+## 📸 Capturas de pantalla
+
+<!-- TODO: 3-4 screenshots estáticos como respaldo del GIF, por si GitHub no
+     lo carga bien o el jurado lee el README en un lugar que no soporta GIFs.
+     Sacá las capturas con la app ya deployada, no en local, para que se vea
+     el link real de producción en la barra de direcciones. -->
+
+<table>
+  <tr>
+    <td><img src="assets/screenshot-metricas.png" alt="Métricas del análisis" width="400"/></td>
+    <td><img src="assets/screenshot-cv-adaptado.png" alt="CV Adaptado" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshot-cover-letter.png" alt="Cover Letter" width="400"/></td>
+    <td><img src="assets/screenshot-kit-entrevista.png" alt="Kit de Entrevista" width="400"/></td>
+  </tr>
+</table>
 
 ---
 
