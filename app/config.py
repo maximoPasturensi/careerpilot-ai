@@ -1,5 +1,10 @@
 from dotenv import load_dotenv
 import logging
+import os
+import streamlit as st
+
+if "GEMINI_API_KEY" in st.secrets:
+    os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
 
 logging.getLogger("google_genai").setLevel(logging.ERROR)
 
