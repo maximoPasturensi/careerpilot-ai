@@ -44,6 +44,22 @@ def generate_cv_pdf(adapted: AdaptedCV) -> bytes:
     buffer.seek(0)
     return buffer.getvalue()
 
+def generate_cover_letter_pdf(letter_obj: CoverLetter, candidate_name: str) -> bytes:
+    """Genera la cover letter como PDF descargable."""
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=letter, topMargin=0.8 * inch, bottomMargin=0.8 * inch)
+    story = [
+        Paragraph(candidate_name, h1_style),
+        Spacer(1, 16),
+        Paragraph(letter_obj.opening, body_style),
+        Paragraph(letter_obj.body, body_style),
+        Paragraph(letter_obj.closing, body_style),
+    ]
+    doc.build(story)
+    buffer.seek(0)
+    return buffer.getvalue()
+
+
 def compute_ats_keyword_coverage(adapted: AdaptedCV, job: JobDescription) -> dict:
     """% de keywords de la oferta que aparecen (literal o casi-literal) en el CV adaptado.
     Es una aproximacion simple tipo ATS real, no usa el LLM-judge del matching engine."""
