@@ -7,6 +7,10 @@ import tempfile
 from app.pipeline import run_full_pipeline
 from app.cv_parser import extract_raw_text
 import re
+from app.exporters import (
+    generate_cv_pdf, generate_cover_letter_pdf,
+    compute_ats_keyword_coverage, build_radar_chart
+)
 
 def format_star_bullet(text: str) -> str:
     """Convierte 'Situacion: ... Tarea: ... Accion: ... Resultado: ...' en viñetas Markdown."""
@@ -91,6 +95,23 @@ if "pipeline_result" in st.session_state:
         st.subheader(adapted.headline)
         st.write(adapted.summary)
         st.write("**Skills destacados:**", ",".join(adapted.highlighted_skills))
+
+        cv_pdf_bytes = generate_cv_pdf(adapted)
+        st.download_button(
+            "📄 Descargar CV adaptado (PDF)",
+            data=cv_pdf_bytes,
+            file_name=f"CV_{adapted.full_name.replace(' ', '_')}.pdf",
+            mime="application/pdf",
+        )
+
+        st.divider()
+        ats = compute_ats_keyword_coverage(adapted, result.job_description)
+        st.caption("🎯 Cobertura de keywords ATS (aproximado)")
+        st.progress(ats["coverage_pct"] / 100)
+        st.write(f"**{ats['coverage_pct']}%** de las keywords de la oferta aparecen en tu CV adaptado")
+        if ats["missing"]:
+            st.caption(f"Faltantes: {', '.join(ats['missing'])}")
+
         st.divider()
 
         for exp in adapted.experience:
@@ -113,6 +134,14 @@ if "pipeline_result" in st.session_state:
         st.write(letter.body)
         st.write(letter.closing)
 
+        letter_pdf_bytes = generate_cover_letter_pdf(letter, result.cv_profile.full_name)
+        st.download_button(
+            "✉️ Descargar Cover Letter (PDF)",
+            data=letter_pdf_bytes,
+            file_name=f"CoverLetter_{result.cv_profile.full_name.replace(' ', '_')}.pdf",
+            mime="application/pdf",
+        )
+
     # --- TAB3: KIT DE ENTREVISTA ---
     with tab_interview:
         kit = result.interview_kit
@@ -126,6 +155,15 @@ if "pipeline_result" in st.session_state:
     # --- TAB4: DETALLE DEL MATCH (gap analysis completo) ---
     with tab_detail:
         match= result.match_result
+
+        st.subheader("📡 Radar de compatibilidad")
+        radar_fig = build_radar_chart(match, result.cv_profile, result.job_description)
+        st.plotly_chart(radar_fig, use_container_width=True)
+        st.caption("Hard Skills y Soft skills son scores calculados por el matching engine."
+                   "Experiencia y Alineacion de Dominio son estimaciones aproximadas")
+
+        st.divider()
+
         col_hard, col_soft = st.columns(2)
         col_hard.metric("Hard skills", f"{match.hard_skills_score}%")
         col_soft.metric("Soft skills", f"{match.soft_skills_score}%")
