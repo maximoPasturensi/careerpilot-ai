@@ -2,9 +2,13 @@ from dotenv import load_dotenv
 import logging
 import os
 import streamlit as st
+from streamlit.errors import StreamlitSecretNotFoundError
 
-if "GEMINI_API_KEY" in st.secrets:
-    os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
+try:
+    if "GEMINI_API_KEY" in st.secrets:
+        os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
+except StreamlitSecretNotFoundError:
+    pass  # CLI / tests: no secrets.toml; la key sale del .env
 
 logging.getLogger("google_genai").setLevel(logging.ERROR)
 
